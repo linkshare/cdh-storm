@@ -1,0 +1,875 @@
+{
+    "name": "STORM",
+    "label": "Storm",
+    "version": "0.9.2_0.1.5",
+    "description": "Apache Storm is a free and open source distributed realtime computation system.",
+    "inExpressWizard": true,
+    "runAs": {
+        "user": "storm",
+        "group": "storm"
+    },
+    "serviceDependencies": [
+        {
+            "name": "HDFS",
+            "required": "true"
+        },
+        {
+            "name": "ZOOKEEPER",
+            "required": "true"
+        }
+    ],
+    "parcel": {
+        "repoUrl": "http://localhost:8000",
+        "requiredTags": [
+            "storm",
+            "cdh"
+        ]
+    },
+    "rolesWithExternalLinks": [
+        "STORM_NIMBUS"
+    ],
+    "parameters": [
+        {
+            "name": "storm_local_dir",
+            "label": "storm_local_dir",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "path",
+            "pathType": "localDataDir",
+            "default": "/var/lib/storm"
+        },
+        {
+            "name": "storm_log_dir",
+            "label": "storm_log_dir",
+            "description": "Path for directory to store process stdout and stderr in",
+            "required": "false",
+            "type": "path",
+            "pathType": "localDataDir",
+            "default": "/var/log/storm"
+        },
+        {
+            "name": "storm_zookeeper_root",
+            "label": "storm_zookeeper_root",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "string",
+            "default": "/storm"
+        },
+        {
+            "name": "storm_zookeeper_session_timeout",
+            "label": "storm_zookeeper_session_timeout",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "default": "20000"
+        },
+        {
+            "name": "storm_zookeeper_connection_timeout",
+            "label": "storm_zookeeper_connection_timeout",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "default": "15000"
+        },
+        {
+            "name": "storm_zookeeper_retry_times",
+            "label": "storm_zookeeper_retry_times",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "default": "5"
+        },
+        {
+            "name": "storm_zookeeper_retry_interval",
+            "label": "storm_zookeeper_retry_interval",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "default": "1000"
+        },
+        {
+            "name": "storm_zookeeper_retry_intervalceiling",
+            "label": "storm_zookeeper_retry_intervalceiling",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "milliseconds",
+            "default": "30000"
+        },
+        {
+            "name": "drpc_port",
+            "label": "drpc_port",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "port",
+            "default": "3772"
+        },
+        {
+            "name": "drpc_worker_threads",
+            "label": "drpc_worker_threads",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "default": "64"
+        },
+        {
+            "name": "drpc_max_buffer_size",
+            "label": "drpc_max_buffer_size",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "bytes",
+            "default": "1048576"
+        },
+        {
+            "name": "drpc_queue_size",
+            "label": "drpc_queue_size",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "bytes",
+            "default": "128"
+        },
+        {
+            "name": "drpc_invocations_port",
+            "label": "drpc_invocations_port",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "port",
+            "default": "3773"
+        },
+        {
+            "name": "drpc_invocations_threads",
+            "label": "drpc_invocations_threads",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "default": "64"
+        },
+        {
+            "name": "drpc_request_timeout_secs",
+            "label": "drpc_request_timeout_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "600"
+        },
+        {
+            "name": "drpc_childopts",
+            "label": "drpc_childopts",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "string",
+            "default": "-Xmx768m"
+        },
+        {
+            "name": "nimbus_thrift_port",
+            "label": "nimbus_thrift_port",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "port",
+            "default": "6627"
+        },
+        {
+            "name": "nimbus_thrift_threads",
+            "label": "nimbus_thrift_threads",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "default": "64"
+        },
+        {
+            "name": "nimbus_thrift_max_buffer_size",
+            "label": "nimbus_thrift_max_buffer_size",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "bytes",
+            "default": "1048576"
+        },
+        {
+            "name": "nimbus_childopts",
+            "label": "nimbus_childopts",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "string",
+            "default": "-Xmx1024m"
+        },
+        {
+            "name": "nimbus_task_timeout_secs",
+            "label": "nimbus_task_timeout_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "30"
+        },
+        {
+            "name": "nimbus_supervisor_timeout_secs",
+            "label": "nimbus_supervisor_timeout_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "60"
+        },
+        {
+            "name": "nimbus_monitor_freq_secs",
+            "label": "nimbus_monitor_freq_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "10"
+        },
+        {
+            "name": "nimbus_cleanup_inbox_freq_secs",
+            "label": "nimbus_cleanup_inbox_freq_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "600"
+        },
+        {
+            "name": "nimbus_inbox_jar_expiration_secs",
+            "label": "nimbus_inbox_jar_expiration_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "3600"
+        },
+        {
+            "name": "nimbus_task_launch_secs",
+            "label": "nimbus_task_launch_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "120"
+        },
+        {
+            "name": "nimbus_reassign",
+            "label": "nimbus_reassign",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "boolean",
+            "default": "true"
+        },
+        {
+            "name": "nimbus_file_copy_expiration_secs",
+            "label": "nimbus_file_copy_expiration_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "600"
+        },
+        {
+            "name": "nimbus_credential_renewers_freq_secs",
+            "label": "nimbus_credential_renewers_freq_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "600"
+        },
+        {
+            "name": "ui_port",
+            "label": "ui_port",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "port",
+            "default": "8080"
+        },
+        {
+            "name": "ui_childopts",
+            "label": "ui_childopts",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "string",
+            "default": "-Xmx768m"
+        },
+        {
+            "name": "ui_actions_enabled",
+            "label": "ui_actions_enabled",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "boolean",
+            "default": "true"
+        },
+        {
+            "name": "ui_header_buffer_size",
+            "label": "ui_header_buffer_size",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "bytes",
+            "default": "4096"
+        },
+        {
+            "name": "logviewer_port",
+            "label": "logviewer_port",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "port",
+            "default": "8000"
+        },
+        {
+            "name": "logviewer_childopts",
+            "label": "logviewer_childopts",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "string",
+            "default": "-Xmx128m"
+        },
+        {
+            "name": "logviewer_cleanup_age",
+            "label": "logviewer_cleanup_age",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "minutes",
+            "default": "10080"
+        },
+        {
+            "name": "logviewer_appender_name",
+            "label": "logviewer_appender_name",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "string",
+            "default": "A1"
+        },
+        {
+            "name": "supervisor_childopts",
+            "label": "supervisor_childopts",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "string",
+            "default": "-Xmx256m"
+        },
+        {
+            "name": "supervisor_run_worker_as_user",
+            "label": "supervisor_run_worker_as_user",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "boolean",
+            "default": "false"
+        },
+        {
+            "name": "supervisor_worker_start_timeout_secs",
+            "label": "supervisor_worker_start_timeout_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "120"
+        },
+        {
+            "name": "supervisor_worker_timeout_secs",
+            "label": "supervisor_worker_timeout_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "30"
+        },
+        {
+            "name": "supervisor_monitor_frequency_secs",
+            "label": "supervisor_monitor_frequency_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "3"
+        },
+        {
+            "name": "supervisor_heartbeat_frequency_secs",
+            "label": "supervisor_heartbeat_frequency_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "5"
+        },
+        {
+            "name": "supervisor_enable",
+            "label": "supervisor_enable",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "boolean",
+            "default": "true"
+        },
+        {
+            "name": "supervisor_slot_ports",
+            "label": "supervisor_slot_ports",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "string_array",
+            "separator": ", ",
+            "default": ["6700", "6701", "6702", "6703"]
+        },        
+        {
+            "name": "worker_childopts",
+            "label": "worker_childopts",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "string",
+            "default": "-Xmx768m"
+        },
+        {
+            "name": "worker_gc_childopts",
+            "label": "worker_gc_childopts",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "worker_heartbeat_frequency_secs",
+            "label": "worker_heartbeat_frequency_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "1"
+        },
+        {
+            "name": "topology_worker_receiver_thread_count",
+            "label": "topology_worker_receiver_thread_count",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "default": "1"
+        },
+        {
+            "name": "task_heartbeat_frequency_secs",
+            "label": "task_heartbeat_frequency_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "3"
+        },
+        {
+            "name": "task_refresh_poll_secs",
+            "label": "task_refresh_poll_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "10"
+        },
+        {
+            "name": "task_credentials_poll_secs",
+            "label": "task_credentials_poll_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "30"
+        },
+        {
+            "name": "storm_messaging_netty_buffer_size",
+            "label": "storm_messaging_netty_buffer_size",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "bytes",
+            "default": "5242880"
+        },
+        {
+            "name": "storm_messaging_netty_max_retries",
+            "label": "storm_messaging_netty_max_retries",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "default": "300"
+        },
+        {
+            "name": "storm_messaging_netty_max_wait",
+            "label": "storm_messaging_netty_max_wait",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "milliseconds",
+            "default": "1000"
+        },
+        {
+            "name": "storm_messaging_netty_min_wait",
+            "label": "storm_messaging_netty_min_wait",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "milliseconds",
+            "default": "100"
+        },
+        {
+            "name": "storm_messaging_netty_transfer_batch_size",
+            "label": "storm_messaging_netty_transfer_batch_size",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "bytes",
+            "default": "262144"
+        },
+        {
+            "name": "storm_messaging_netty_flush_check_interval",
+            "label": "storm_messaging_netty_flush_check_interval",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "milliseconds",
+            "default": "10"
+        },
+        {
+            "name": "storm_messaging_netty_authentication",
+            "label": "storm_messaging_netty_authentication",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "boolean",
+            "default": "false"
+        },
+        {
+            "name": "storm_group_mapping_service_cache_duration_secs",
+            "label": "storm_group_mapping_service_cache_duration_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "120"
+        },
+        {
+            "name": "topology_enable_message_timeouts",
+            "label": "topology_enable_message_timeouts",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "boolean",
+            "default": "true"
+        },
+        {
+            "name": "topology_debug",
+            "label": "topology_debug",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "boolean",
+            "default": "false"
+        },
+        {
+            "name": "topology_workers",
+            "label": "topology_workers",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "default": "1"
+        },
+        {
+            "name": "topology_message_timeout_secs",
+            "label": "topology_message_timeout_secs",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "seconds",
+            "default": "30"
+        },
+        {
+            "name": "topology_executor_receive_buffer_size",
+            "label": "topology_executor_receive_buffer_size",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "bytes",
+            "default": "1024"
+        },
+        {
+            "name": "topology_executor_send_buffer_size",
+            "label": "topology_executor_send_buffer_size",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "bytes",
+            "default": "1024"
+        },
+        {
+            "name": "topology_receiver_buffer_size",
+            "label": "topology_receiver_buffer_size",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "bytes",
+            "default": "8"
+        },
+        {
+            "name": "topology_transfer_buffer_size",
+            "label": "topology_transfer_buffer_size",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "bytes",
+            "default": "1024"
+        },
+        {
+            "name": "topology_worker_shared_thread_pool_size",
+            "label": "topology_worker_shared_thread_pool_size",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "bytes",
+            "default": "4"
+        },
+        {
+            "name": "topology_trident_batch_emit_interval",
+            "label": "topology_trident_batch_emit_interval",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "long",
+            "unit": "milliseconds",
+            "default": "500"
+        },
+        {
+            "name": "topology_testing_always_try_serialize",
+            "label": "topology_testing_always_try_serialize",
+            "description": "See Storm documentation for description of this parameter",
+            "required": "false",
+            "type": "boolean",
+            "default": "false"
+        }
+    ],
+    "roles": [
+        {
+            "name": "STORM_NIMBUS",
+            "label": "Nimbus Server",
+            "pluralLabel": "Nimbus Servers",
+            "startRunner": {
+                "program": "scripts/control.sh",
+                "args": [
+                    "nimbus",
+                    "start"
+                ],
+                "environmentVariables" : {
+					"STORM_LOCAL_DIR": "${storm_local_dir}",
+					"STORM_LOG_DIR": "${storm_log_dir}",
+					"STORM_ZOOKEEPER_ROOT": "${storm_zookeeper_root}",
+					"STORM_ZOOKEEPER_SESSION_TIMEOUT": "${storm_zookeeper_session_timeout}",
+					"STORM_ZOOKEEPER_CONNECTION_TIMEOUT": "${storm_zookeeper_connection_timeout}",
+					"STORM_ZOOKEEPER_RETRY_TIMES": "${storm_zookeeper_retry_times}",
+					"STORM_ZOOKEEPER_RETRY_INTERVAL": "${storm_zookeeper_retry_interval}",
+					"STORM_ZOOKEEPER_RETRY_INTERVALCEILING": "${storm_zookeeper_retry_intervalceiling}",
+					"DRPC_PORT": "${drpc_port}",
+					"DRPC_WORKER_THREADS": "${drpc_worker_threads}",
+					"DRPC_MAX_BUFFER_SIZE": "${drpc_max_buffer_size}",
+					"DRPC_QUEUE_SIZE": "${drpc_queue_size}",
+					"DRPC_INVOCATIONS_PORT": "${drpc_invocations_port}",
+					"DRPC_INVOCATIONS_THREADS": "${drpc_invocations_threads}",
+					"DRPC_REQUEST_TIMEOUT_SECS": "${drpc_request_timeout_secs}",
+					"DRPC_CHILDOPTS": "${drpc_childopts}",
+					"NIMBUS_THRIFT_PORT": "${nimbus_thrift_port}",
+					"NIMBUS_THRIFT_THREADS": "${nimbus_thrift_threads}",
+					"NIMBUS_THRIFT_MAX_BUFFER_SIZE": "${nimbus_thrift_max_buffer_size}",
+					"NIMBUS_CHILDOPTS": "${nimbus_childopts}",
+					"NIMBUS_TASK_TIMEOUT_SECS": "${nimbus_task_timeout_secs}",
+					"NIMBUS_SUPERVISOR_TIMEOUT_SECS": "${nimbus_supervisor_timeout_secs}",
+					"NIMBUS_MONITOR_FREQ_SECS": "${nimbus_monitor_freq_secs}",
+					"NIMBUS_CLEANUP_INBOX_FREQ_SECS": "${nimbus_cleanup_inbox_freq_secs}",
+					"NIMBUS_INBOX_JAR_EXPIRATION_SECS": "${nimbus_inbox_jar_expiration_secs}",
+					"NIMBUS_TASK_LAUNCH_SECS": "${nimbus_task_launch_secs}",
+					"NIMBUS_REASSIGN": "${nimbus_reassign}",
+					"NIMBUS_FILE_COPY_EXPIRATION_SECS": "${nimbus_file_copy_expiration_secs}",
+					"NIMBUS_CREDENTIAL_RENEWERS_FREQ_SECS": "${nimbus_credential_renewers_freq_secs}",
+					"UI_PORT": "${ui_port}",
+					"UI_CHILDOPTS": "${ui_childopts}",
+					"UI_ACTIONS_ENABLED": "${ui_actions_enabled}",
+					"UI_HEADER_BUFFER_SIZE": "${ui_header_buffer_size}",
+					"LOGVIEWER_PORT": "${logviewer_port}",
+					"LOGVIEWER_CHILDOPTS": "${logviewer_childopts}",
+					"LOGVIEWER_CLEANUP_AGE": "${logviewer_cleanup_age}",
+					"LOGVIEWER_APPENDER_NAME": "${logviewer_appender_name}",                    
+					"SUPERVISOR_CHILDOPTS": "${supervisor_childopts}",
+					"SUPERVISOR_RUN_WORKER_AS_USER": "${supervisor_run_worker_as_user}",
+					"SUPERVISOR_WORKER_START_TIMEOUT_SECS": "${supervisor_worker_start_timeout_secs}",
+					"SUPERVISOR_WORKER_TIMEOUT_SECS": "${supervisor_worker_timeout_secs}",
+					"SUPERVISOR_MONITOR_FREQUENCY_SECS": "${supervisor_monitor_frequency_secs}",
+					"SUPERVISOR_HEARTBEAT_FREQUENCY_SECS": "${supervisor_heartbeat_frequency_secs}",
+					"SUPERVISOR_ENABLE": "${supervisor_enable}",
+                    "SUPERVISOR_SLOT_PORTS": "${supervisor_slot_ports}",
+					"WORKER_CHILDOPTS": "${worker_childopts}",
+					"WORKER_GC_CHILDOPTS": "${worker_gc_childopts}",
+					"WORKER_HEARTBEAT_FREQUENCY_SECS": "${worker_heartbeat_frequency_secs}",
+					"TOPOLOGY_WORKER_RECEIVER_THREAD_COUNT": "${topology_worker_receiver_thread_count}",
+					"TASK_HEARTBEAT_FREQUENCY_SECS": "${task_heartbeat_frequency_secs}",
+					"TASK_REFRESH_POLL_SECS": "${task_refresh_poll_secs}",
+					"TASK_CREDENTIALS_POLL_SECS": "${task_credentials_poll_secs}",
+					"STORM_MESSAGING_NETTY_BUFFER_SIZE": "${storm_messaging_netty_buffer_size}",
+					"STORM_MESSAGING_NETTY_MAX_RETRIES": "${storm_messaging_netty_max_retries}",
+					"STORM_MESSAGING_NETTY_MAX_WAIT": "${storm_messaging_netty_max_wait}",
+					"STORM_MESSAGING_NETTY_MIN_WAIT": "${storm_messaging_netty_min_wait}",
+					"STORM_MESSAGING_NETTY_TRANSFER_BATCH_SIZE": "${storm_messaging_netty_transfer_batch_size}",
+					"STORM_MESSAGING_NETTY_FLUSH_CHECK_INTERVAL": "${storm_messaging_netty_flush_check_interval}",
+					"STORM_MESSAGING_NETTY_AUTHENTICATION": "${storm_messaging_netty_authentication}",
+					"STORM_GROUP_MAPPING_SERVICE_CACHE_DURATION_SECS": "${storm_group_mapping_service_cache_duration_secs}",
+					"TOPOLOGY_ENABLE_MESSAGE_TIMEOUTS": "${topology_enable_message_timeouts}",
+					"TOPOLOGY_DEBUG": "${topology_debug}",
+					"TOPOLOGY_WORKERS": "${topology_workers}",
+					"TOPOLOGY_MESSAGE_TIMEOUT_SECS": "${topology_message_timeout_secs}",
+					"TOPOLOGY_EXECUTOR_RECEIVE_BUFFER_SIZE": "${topology_executor_receive_buffer_size}",
+					"TOPOLOGY_EXECUTOR_SEND_BUFFER_SIZE": "${topology_executor_send_buffer_size}",
+					"TOPOLOGY_RECEIVER_BUFFER_SIZE": "${topology_receiver_buffer_size}",
+					"TOPOLOGY_TRANSFER_BUFFER_SIZE": "${topology_transfer_buffer_size}",
+					"TOPOLOGY_WORKER_SHARED_THREAD_POOL_SIZE": "${topology_worker_shared_thread_pool_size}",
+					"TOPOLOGY_TRIDENT_BATCH_EMIT_INTERVAL": "${topology_trident_batch_emit_interval}",
+					"TOPOLOGY_TESTING_ALWAYS_TRY_SERIALIZE": "${topology_testing_always_try_serialize}"                
+                }                
+            },
+            "externalLink": {
+                "name": "storm_ui",
+                "label": "Storm UI",
+                "url": "http://${host}:8080"
+            },
+            "topology": {
+                "minInstances": "1",
+                "maxInstances": "1"
+            },
+            "logging": {
+                "dir": "/var/log/storm",
+                "filename": "nimbus",
+                "isModifiable": true,
+                "configName": "log.dir"
+            },
+            "configWriter": {
+                "peerConfigGenerators": [
+                    {
+                        "filename": "nimbus_host.properties",
+                        "params": [
+                            "log_dir"
+                        ],
+                        "roleName": "STORM_NIMBUS"
+                    }
+                ],
+                "auxConfigGenerators": [
+                    {
+                        "filename": "storm.yaml",
+                        "sourceFilename": "aux/storm.yaml"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "STORM_SUPERVISOR",
+            "label": "Supervisor (Worker)",
+            "pluralLabel": "Supervisors",
+            "startRunner": {
+                "program": "scripts/control.sh",
+                "args": [
+                    "supervisor",
+                    "start"
+                ],
+                "environmentVariables" : {
+					"STORM_LOCAL_DIR": "${storm_local_dir}",
+					"STORM_LOG_DIR": "${storm_log_dir}",
+					"STORM_ZOOKEEPER_ROOT": "${storm_zookeeper_root}",
+					"STORM_ZOOKEEPER_SESSION_TIMEOUT": "${storm_zookeeper_session_timeout}",
+					"STORM_ZOOKEEPER_CONNECTION_TIMEOUT": "${storm_zookeeper_connection_timeout}",
+					"STORM_ZOOKEEPER_RETRY_TIMES": "${storm_zookeeper_retry_times}",
+					"STORM_ZOOKEEPER_RETRY_INTERVAL": "${storm_zookeeper_retry_interval}",
+					"STORM_ZOOKEEPER_RETRY_INTERVALCEILING": "${storm_zookeeper_retry_intervalceiling}",
+					"DRPC_PORT": "${drpc_port}",
+					"DRPC_WORKER_THREADS": "${drpc_worker_threads}",
+					"DRPC_MAX_BUFFER_SIZE": "${drpc_max_buffer_size}",
+					"DRPC_QUEUE_SIZE": "${drpc_queue_size}",
+					"DRPC_INVOCATIONS_PORT": "${drpc_invocations_port}",
+					"DRPC_INVOCATIONS_THREADS": "${drpc_invocations_threads}",
+					"DRPC_REQUEST_TIMEOUT_SECS": "${drpc_request_timeout_secs}",
+					"DRPC_CHILDOPTS": "${drpc_childopts}",
+					"NIMBUS_THRIFT_PORT": "${nimbus_thrift_port}",
+					"NIMBUS_THRIFT_THREADS": "${nimbus_thrift_threads}",
+					"NIMBUS_THRIFT_MAX_BUFFER_SIZE": "${nimbus_thrift_max_buffer_size}",
+					"NIMBUS_CHILDOPTS": "${nimbus_childopts}",
+					"NIMBUS_TASK_TIMEOUT_SECS": "${nimbus_task_timeout_secs}",
+					"NIMBUS_SUPERVISOR_TIMEOUT_SECS": "${nimbus_supervisor_timeout_secs}",
+					"NIMBUS_MONITOR_FREQ_SECS": "${nimbus_monitor_freq_secs}",
+					"NIMBUS_CLEANUP_INBOX_FREQ_SECS": "${nimbus_cleanup_inbox_freq_secs}",
+					"NIMBUS_INBOX_JAR_EXPIRATION_SECS": "${nimbus_inbox_jar_expiration_secs}",
+					"NIMBUS_TASK_LAUNCH_SECS": "${nimbus_task_launch_secs}",
+					"NIMBUS_REASSIGN": "${nimbus_reassign}",
+					"NIMBUS_FILE_COPY_EXPIRATION_SECS": "${nimbus_file_copy_expiration_secs}",
+					"NIMBUS_CREDENTIAL_RENEWERS_FREQ_SECS": "${nimbus_credential_renewers_freq_secs}",
+					"UI_PORT": "${ui_port}",
+					"UI_CHILDOPTS": "${ui_childopts}",
+					"UI_ACTIONS_ENABLED": "${ui_actions_enabled}",
+					"UI_HEADER_BUFFER_SIZE": "${ui_header_buffer_size}",
+					"LOGVIEWER_PORT": "${logviewer_port}",
+					"LOGVIEWER_CHILDOPTS": "${logviewer_childopts}",
+					"LOGVIEWER_CLEANUP_AGE": "${logviewer_cleanup_age}",
+					"LOGVIEWER_APPENDER_NAME": "${logviewer_appender_name}",
+					"SUPERVISOR_CHILDOPTS": "${supervisor_childopts}",
+					"SUPERVISOR_RUN_WORKER_AS_USER": "${supervisor_run_worker_as_user}",
+					"SUPERVISOR_WORKER_START_TIMEOUT_SECS": "${supervisor_worker_start_timeout_secs}",
+					"SUPERVISOR_WORKER_TIMEOUT_SECS": "${supervisor_worker_timeout_secs}",
+					"SUPERVISOR_MONITOR_FREQUENCY_SECS": "${supervisor_monitor_frequency_secs}",
+					"SUPERVISOR_HEARTBEAT_FREQUENCY_SECS": "${supervisor_heartbeat_frequency_secs}",
+					"SUPERVISOR_ENABLE": "${supervisor_enable}",
+                    "SUPERVISOR_SLOT_PORTS": "${supervisor_slot_ports}",
+					"WORKER_CHILDOPTS": "${worker_childopts}",
+					"WORKER_GC_CHILDOPTS": "${worker_gc_childopts}",
+					"WORKER_HEARTBEAT_FREQUENCY_SECS": "${worker_heartbeat_frequency_secs}",
+					"TOPOLOGY_WORKER_RECEIVER_THREAD_COUNT": "${topology_worker_receiver_thread_count}",
+					"TASK_HEARTBEAT_FREQUENCY_SECS": "${task_heartbeat_frequency_secs}",
+					"TASK_REFRESH_POLL_SECS": "${task_refresh_poll_secs}",
+					"TASK_CREDENTIALS_POLL_SECS": "${task_credentials_poll_secs}",
+					"STORM_MESSAGING_NETTY_BUFFER_SIZE": "${storm_messaging_netty_buffer_size}",
+					"STORM_MESSAGING_NETTY_MAX_RETRIES": "${storm_messaging_netty_max_retries}",
+					"STORM_MESSAGING_NETTY_MAX_WAIT": "${storm_messaging_netty_max_wait}",
+					"STORM_MESSAGING_NETTY_MIN_WAIT": "${storm_messaging_netty_min_wait}",
+					"STORM_MESSAGING_NETTY_TRANSFER_BATCH_SIZE": "${storm_messaging_netty_transfer_batch_size}",
+					"STORM_MESSAGING_NETTY_FLUSH_CHECK_INTERVAL": "${storm_messaging_netty_flush_check_interval}",
+					"STORM_MESSAGING_NETTY_AUTHENTICATION": "${storm_messaging_netty_authentication}",
+					"STORM_GROUP_MAPPING_SERVICE_CACHE_DURATION_SECS": "${storm_group_mapping_service_cache_duration_secs}",
+					"TOPOLOGY_ENABLE_MESSAGE_TIMEOUTS": "${topology_enable_message_timeouts}",
+					"TOPOLOGY_DEBUG": "${topology_debug}",
+					"TOPOLOGY_WORKERS": "${topology_workers}",
+					"TOPOLOGY_MESSAGE_TIMEOUT_SECS": "${topology_message_timeout_secs}",
+					"TOPOLOGY_EXECUTOR_RECEIVE_BUFFER_SIZE": "${topology_executor_receive_buffer_size}",
+					"TOPOLOGY_EXECUTOR_SEND_BUFFER_SIZE": "${topology_executor_send_buffer_size}",
+					"TOPOLOGY_RECEIVER_BUFFER_SIZE": "${topology_receiver_buffer_size}",
+					"TOPOLOGY_TRANSFER_BUFFER_SIZE": "${topology_transfer_buffer_size}",
+					"TOPOLOGY_WORKER_SHARED_THREAD_POOL_SIZE": "${topology_worker_shared_thread_pool_size}",
+					"TOPOLOGY_TRIDENT_BATCH_EMIT_INTERVAL": "${topology_trident_batch_emit_interval}",
+					"TOPOLOGY_TESTING_ALWAYS_TRY_SERIALIZE": "${topology_testing_always_try_serialize}"                
+                }                                
+            },
+            "externalLink": {
+                "name": "storm_logviewer",
+                "label": "Logviewer",
+                "url": "http://${host}:8000"
+            },
+            "topology": {
+                "minInstances": "1"
+            },
+            "logging": {
+                "dir": "/var/log/storm",
+                "filename": "supervisor",
+                "isModifiable": true,
+                "configName": "log.dir"
+            },
+            "configWriter": {
+                "peerConfigGenerators": [
+                    {
+                        "filename": "nimbus_host.properties",
+                        "params": [
+                            "log_dir"
+                        ],
+                        "roleName": "STORM_NIMBUS"
+                    }
+                ],
+                "auxConfigGenerators": [
+                    {
+                        "filename": "storm.yaml",
+                        "sourceFilename": "aux/storm.yaml"
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,125 @@
+{
+    "parcels": [
+        {
+            "replaces": "STORM",
+            "hash": "61a79324348535600e68847613ccf2608d43e8d4",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "0.9.2",
+                    "version": "apache-storm-0.9.2-incubating",
+                    "name": "apache-storm",
+                    "pkg_release": "0.9.2"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "STORM-0.9.2_0.1.1-el5.parcel"
+        },
+        {
+            "replaces": "STORM",
+            "hash": "61a79324348535600e68847613ccf2608d43e8d4",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "0.9.2",
+                    "version": "apache-storm-0.9.2-incubating",
+                    "name": "apache-storm",
+                    "pkg_release": "0.9.2"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "STORM-0.9.2_0.1.1-el6.parcel"
+        },
+        {
+            "replaces": "STORM",
+            "hash": "61a79324348535600e68847613ccf2608d43e8d4",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "0.9.2",
+                    "version": "apache-storm-0.9.2-incubating",
+                    "name": "apache-storm",
+                    "pkg_release": "0.9.2"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "STORM-0.9.2_0.1.1-lucid.parcel"
+        },
+        {
+            "replaces": "STORM",
+            "hash": "61a79324348535600e68847613ccf2608d43e8d4",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "0.9.2",
+                    "version": "apache-storm-0.9.2-incubating",
+                    "name": "apache-storm",
+                    "pkg_release": "0.9.2"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "STORM-0.9.2_0.1.1-precise.parcel"
+        },
+        {
+            "replaces": "STORM",
+            "hash": "61a79324348535600e68847613ccf2608d43e8d4",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "0.9.2",
+                    "version": "apache-storm-0.9.2-incubating",
+                    "name": "apache-storm",
+                    "pkg_release": "0.9.2"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "STORM-0.9.2_0.1.1-sles11.parcel"
+        },
+        {
+            "replaces": "STORM",
+            "hash": "61a79324348535600e68847613ccf2608d43e8d4",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "0.9.2",
+                    "version": "apache-storm-0.9.2-incubating",
+                    "name": "apache-storm",
+                    "pkg_release": "0.9.2"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "STORM-0.9.2_0.1.1-squeeze.parcel"
+        },
+        {
+            "replaces": "STORM",
+            "hash": "61a79324348535600e68847613ccf2608d43e8d4",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "0.9.2",
+                    "version": "apache-storm-0.9.2-incubating",
+                    "name": "apache-storm",
+                    "pkg_release": "0.9.2"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "STORM-0.9.2_0.1.1-trusty.parcel"
+        },
+        {
+            "replaces": "STORM",
+            "hash": "61a79324348535600e68847613ccf2608d43e8d4",
+            "depends": "CDH",
+            "components": [
+                {
+                    "pkg_version": "0.9.2",
+                    "version": "apache-storm-0.9.2-incubating",
+                    "name": "apache-storm",
+                    "pkg_release": "0.9.2"
+                }
+            ],
+            "conflicts": "",
+            "parcelName": "STORM-0.9.2_0.1.1-wheezy.parcel"
+        }
+    ],
+    "lastUpdated": 1417536219
+}
